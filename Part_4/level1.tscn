@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://new_tileset.tres" type="TileSet" id=1]
+[ext_resource path="res://player.tscn" type="PackedScene" id=2]
+[ext_resource path="res://spikes.tscn" type="PackedScene" id=3]
+[ext_resource path="res://coin.tscn" type="PackedScene" id=4]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 826, 38.5 )
+
+[node name="level1" type="Node2D"]
+
+[node name="player" parent="." instance=ExtResource( 2 )]
+position = Vector2( 313, 197 )
+collision_mask = 6
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+collision_layer = 4
+format = 1
+tile_data = PoolIntArray( -65523, 1, 0, -65522, 1, 0, -65520, 1, 0, -65519, 1, 0, -65518, 1, 0, -65515, 1, 0, -65514, 1, 0, 65536, 0, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 131072, 0, 0, 131089, 1, 0, 131090, 1, 0, 196608, 0, 0, 262144, 0, 0, 262157, 1, 0, 262158, 1, 0, 262159, 1, 0, 262160, 1, 0, 262163, 1, 0, 262164, 1, 0, 262165, 1, 0, 327680, 0, 0, 393216, 0, 0, 393223, 2, 0, 393224, 2, 0, 393225, 2, 0, 393226, 2, 0, 393227, 2, 0, 393237, 1, 0, 393238, 1, 0, 393239, 1, 0, 393240, 1, 0, 458752, 0, 0, 458753, 0, 0, 458754, 0, 0, 458755, 0, 0, 458756, 0, 0, 458757, 0, 0, 458758, 0, 0, 458759, 0, 0, 458760, 0, 0, 458761, 0, 0, 458762, 0, 0, 458763, 0, 0, 458764, 0, 0, 458765, 0, 0, 458766, 0, 0, 458767, 0, 0, 458768, 0, 0, 458769, 0, 0, 458770, 0, 0 )
+
+[node name="fallzone" type="Area2D" parent="."]
+position = Vector2( 210, 544 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="fallzone"]
+position = Vector2( 816, 28.5 )
+shape = SubResource( 1 )
+one_way_collision = true
+
+[node name="spikes" type="Node2D" parent="."]
+
+[node name="spikes" parent="spikes" instance=ExtResource( 3 )]
+position = Vector2( 154, 417 )
+collision_layer = 2
+
+[node name="spikes3" parent="spikes" instance=ExtResource( 3 )]
+position = Vector2( 600, 355 )
+collision_layer = 2
+
+[node name="spikes2" parent="spikes" instance=ExtResource( 3 )]
+position = Vector2( 981, -93 )
+collision_layer = 2
+
+[node name="coins" type="Node2D" parent="."]
+
+[node name="coin" parent="coins" instance=ExtResource( 4 )]
+position = Vector2( 468, 332 )
+collision_layer = 4
+
+[node name="coin2" parent="coins" instance=ExtResource( 4 )]
+position = Vector2( 1368, -112 )
+collision_layer = 4
+
+[node name="coin3" parent="coins" instance=ExtResource( 4 )]
+position = Vector2( 896, 214 )
+collision_layer = 4
+
+[connection signal="body_entered" from="fallzone" to="player" method="_on_fallzone_body_entered"]
+[connection signal="body_entered" from="spikes/spikes" to="player" method="_on_spikes_body_entered"]
+[connection signal="body_entered" from="spikes/spikes3" to="player" method="_on_spikes_body_entered"]
+[connection signal="body_entered" from="spikes/spikes2" to="player" method="_on_spikes_body_entered"]
+[connection signal="body_entered" from="coins/coin" to="player" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="coins/coin2" to="player" method="_on_coin_body_entered"]
+[connection signal="body_entered" from="coins/coin3" to="player" method="_on_coin_body_entered"]
