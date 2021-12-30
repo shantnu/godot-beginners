@@ -7,7 +7,7 @@
 [ext_resource path="res://enemy.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 826, 38.5 )
+extents = Vector2( 1177, 38.5 )
 
 [node name="level1" type="Node2D"]
 
@@ -28,7 +28,7 @@ __meta__ = {
 }
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="fallzone"]
-position = Vector2( 816, 28.5 )
+position = Vector2( 1167, 28.5 )
 shape = SubResource( 1 )
 one_way_collision = true
 
